@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+
+      /* Center content */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      text-align: left;
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #eaf2f8;
+      border-radius: 8px;
+    }
+
+    .options p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Select Your Medicine</h1>
+    <div class="options">
+      <p>Press 1 → Paracetamol</p>
+      <p>Press 2 → Stomach Pain</p>
+      <p>Press 3 → Vomiting</p>
+      <p>Press 4 → Body Pain</p>
+    </div>
+
+    <input type="number" id="choice" placeholder="Enter your choice (1-4)" min="1" max="4">
+
+    <button onclick="getMedicine()">Get Medicine</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function getMedicine() {
+      let choice = document.getElementById("choice").value;
+      let result = document.getElementById("result");
+
+      if (choice == "1") {
+        result.textContent = "✅ You selected Paracetamol. Please collect your medicine!";
+      } else if (choice == "2") {
+        result.textContent = "✅ You selected Stomach Pain medicine. Please collect your medicine!";
+      } else if (choice == "3") {
+        result.textContent = "✅ You selected Vomiting medicine. Please collect your medicine!";
+      } else if (choice == "4") {
+        result.textContent = "✅ You selected Body Pain medicine. Please collect your medicine!";
+      } else {
+        result.textContent = "⚠️ Invalid choice! Please enter 1, 2, 3, or 4.";
+      }
+    }
+  </script>
+</body>
+</html>
