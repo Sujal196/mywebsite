@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+
+      /* Center content */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+      width: 400px;             
+      min-height: 600px;        
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .options {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #eaf2f8;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .options p {
+      margin: 8px 0;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 14px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Select Your Medicine</h1>
+
+    <div class="options">
+      <p>Press 1 → Paracetamol</p>
+      <p>Press 2 → Stomach Pain</p>
+      <p>Press 3 → Vomiting</p>
+      <p>Press 4 → Body Pain</p>
+    </div>
+
+    <label for="choice">Enter Your Choice</label>
+    <input type="number" id="choice" placeholder="Enter your choice (1-4)" min="1" max="4">
+
+    <button onclick="getMedicine()">Submit</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function getMedicine() {
+      let choice = document.getElementById("choice").value;
+      let result = document.getElementById("result");
+
+      if (choice == "1") {
+        result.textContent = "✅ You selected Paracetamol. Please collect your medicine! 😊";
+      } else if (choice == "2") {
+        result.textContent = "✅ You selected Stomach Pain medicine. Please collect your medicine! 😊";
+      } else if (choice == "3") {
+        result.textContent = "✅ You selected Vomiting medicine. Please collect your medicine! 😊";
+      } else if (choice == "4") {
+        result.textContent = "✅ You selected Body Pain medicine. Please collect your medicine! 😊";
+      } else {
+        result.textContent = "⚠️ Invalid choice! Please enter 1, 2, 3, or 4.";
+      }
+    }
+  </script>
+</body>
+</html>
