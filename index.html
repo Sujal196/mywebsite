@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine ATM System</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin:0; 
+      padding:0; 
+      background:#f2f2f2; 
+      display:flex; 
+      justify-content:center; 
+      align-items:flex-start; /* start from top */
+      padding-top:50px; /* space from top */
+      min-height:100vh;
+    }
+    .main-container {
+      background:#fff; 
+      padding:40px; 
+      border-radius:10px; 
+      box-shadow:0 0 12px rgba(0,0,0,0.2); 
+      width:100%; 
+      max-width:600px; 
+      text-align:center;
+    }
+    h1 {
+      color:#020e1c; /* bright blue for visibility */
+      margin-bottom:40px; 
+      font-size:42px; /* bigger heading */
+      font-weight:bold;
+      text-transform: uppercase; /* capital letters */
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* slight shadow to pop */
+    }
+    form {
+      background:#d9e4ea; padding:20px; border-radius:10px;
+    }
+    .form-group { margin-bottom:15px; text-align:left; }
+    label { display:block; margin-bottom:6px; font-weight:bold; }
+    input, select { width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; }
+    button {
+      width:100%; padding:12px; background:#007BFF; color:#fff; 
+      font-size:18px; border:none; border-radius:5px; cursor:pointer; margin-top:10px;
+    }
+    button:hover { background:#0056b3; }
+    .qr-code { text-align:center; margin-top:20px; }
+    .qr-code img { width:180px; height:180px; border-radius:8px; border:1px solid #ccc; }
+
+    /* Simple checkbox styling */
+    .payment-check {
+      margin-top:20px;
+      font-size:16px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:flex-start;
+    }
+    .payment-check input[type="checkbox"] {
+      width:20px;
+      height:20px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>MEDICINE ATM SYSTEM</h1>
+    <form id="medicineForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1" max="130" required>
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" min="1" max="300" step="0.1" required>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="non-binary">Non-Binary</option>
+          <option value="prefer-not-to-say">Prefer not to say</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="symptom">Select Disease:</label>
+        <select id="symptom" name="symptom" required>
+          <option value="" disabled selected>Select Symptom</option>
+          <option value="fever">Fever - Price 25 Rs/-</option>
+          <option value="vomiting">Vomiting - Price 20 Rs/-</option>
+          <option value="stomach_pain">Stomach Pain - Price 15 Rs/-</option>
+          <option value="body_pain">Body Pain - Price 10 Rs/-</option>
+        </select>
+      </div>
+
+      <div class="qr-code">
+        <label>Scan QR Code for Payment:</label><br>
+        <img src="code.jpg" alt="UPI Payment QR">
+      </div>
+
+      <!-- Empty checkbox for payment -->
+      <label class="payment-check">
+        <input type="checkbox" id="paymentDone">
+        I have completed the payment
+      </label>
+
+      <button type="submit">Submit & Get Medicine</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("medicineForm").addEventListener("submit", function(event) {
+      event.preventDefault(); 
+      if(document.getElementById("paymentDone").checked) {
+        window.location.href = "second.html";
+      } else {
+        alert("⚠️ Payment not completed! Please complete the payment to proceed.");
+      }
+    });
+  </script>
+</body>
+</html>
