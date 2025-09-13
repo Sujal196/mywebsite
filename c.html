@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicine Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+      width: 500px;
+      min-height: 550px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+    }
+
+    h1 { 
+      color: #2c3e50; 
+      margin-bottom: 30px; 
+      font-size: 28px; 
+    }
+
+    .options {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #eaf2f8;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #333;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .result {
+      margin: 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      min-height: 70px;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .med-btn {
+      flex: 1;
+      max-width: 100px;   /* rectangle */
+      padding: 14px 0;
+      background-color: #283da7;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .med-btn:hover { background-color: #1f2f85; }
+    .selected { background-color: #28a745 !important; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Confirm Your Medicine</h1>
+
+    <div class="options">
+      <p>1 → Paracetamol</p>
+      <p>2 → Stomach Pain</p>
+      <p>3 → Vomiting</p>
+      <p>4 → Body Pain</p>
+    </div>
+
+    <!-- Input box -->
+    <label for="choice">Enter selected medicine number</label>
+    <input type="number" id="choice" placeholder="Selected Medicine Number" min="1" max="4">
+
+    <!-- Result text -->
+    <div class="result" id="result"></div>
+
+    <!-- Buttons in one row -->
+    <div class="button-row">
+      <button class="med-btn" onclick="selectMedicine(1)">1</button>
+      <button class="med-btn" onclick="selectMedicine(2)">2</button>
+      <button class="med-btn" onclick="selectMedicine(3)">3</button>
+      <button class="med-btn" onclick="selectMedicine(4)">4</button>
+    </div>
+  </div>
+
+  <script>
+    const mapping = {
+      "1": "Paracetamol",
+      "2": "Stomach Pain",
+      "3": "Vomiting",
+      "4": "Body Pain"
+    };
+
+    const input = document.getElementById('choice');
+    const result = document.getElementById('result');
+    const buttons = document.querySelectorAll('.med-btn');
+    let selected = null;
+
+    function showMessage(val) {
+      if (mapping[val]) {
+        result.innerHTML =
+          `✅ You selected ${mapping[val]} medicine. Please collect your medicine. 😊<br><br>` +
+          `Now click <b>${val}</b> button to confirm.`;
+
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        buttons[val - 1].classList.add('selected');
+        selected = val;
+      } else if (val) {
+        result.innerHTML = "⚠️ Invalid choice! Please enter 1, 2, 3, or 4.";
+        selected = null;
+        buttons.forEach(btn => btn.classList.remove('selected'));
+      } else {
+        result.innerHTML = "👉 Please select your medicine";
+        selected = null;
+        buttons.forEach(btn => btn.classList.remove('selected'));
+      }
+    }
+
+    // Input box ke liye
+    input.addEventListener('input', () => showMessage(input.value.trim()));
+
+    // Buttons ke liye
+    function selectMedicine(num) {
+      input.value = num;
+      showMessage(num);
+
+      // confirm bhi yahi pe ho jaye (single click fast response)
+      result.innerHTML = `🎉 Your selected medicine is ${mapping[num]}. Please collect your medicine 🎉✅`;
+    }
+  </script>
+</body>
+</html>
